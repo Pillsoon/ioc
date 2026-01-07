@@ -106,27 +106,28 @@
     <Teleport to="body">
       <div
         v-if="lightboxImage"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+        class="fixed inset-0 z-50 flex flex-col bg-black/90"
         @click="closeLightbox"
       >
-        <div class="relative max-w-full max-h-full" @click.stop>
-          <!-- Close Button -->
+        <!-- Header with close button -->
+        <div class="flex justify-between items-center p-4 text-white">
+          <span class="text-sm">{{ lightboxImage.label }}</span>
           <button
             @click="closeLightbox"
-            class="absolute -top-10 right-0 text-white text-sm flex items-center gap-1 hover:text-gray-300"
+            class="text-white text-2xl w-10 h-10 flex items-center justify-center hover:bg-white/20 rounded-full"
           >
-            닫기 ✕
+            ✕
           </button>
+        </div>
 
-          <!-- Image -->
+        <!-- Image container -->
+        <div class="flex-1 flex items-center justify-center p-4 overflow-auto" @click.stop>
           <img
             :src="lightboxImage.url"
             :alt="lightboxImage.label"
-            class="max-w-full max-h-[80vh] rounded-lg"
+            class="max-w-full max-h-full object-contain"
+            @click="closeLightbox"
           />
-
-          <!-- Label -->
-          <p class="text-center text-white mt-3 text-sm">{{ lightboxImage.label }}</p>
         </div>
       </div>
     </Teleport>
