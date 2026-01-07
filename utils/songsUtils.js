@@ -35,12 +35,29 @@ export function createWeeklySongs(songs) {
     .filter(song => song.date !== null)
     .sort((a, b) => new Date(a.date) - new Date(b.date))
 
+  // 주일 찬양 카운터 (이번 주 / 다음 주 구분용)
+  let sundayCount = 0
+
   // weekLabel 추가
-  return songsWithDate.map((song, index) => ({
-    ...song,
-    displayDate: formatDate(song.date),
-    weekLabel: index === 0 ? '이번 주 찬양곡' : '다음 주 찬양곡'
-  }))
+  return songsWithDate.map((song) => {
+    const displayDate = formatDate(song.date)
+    let weekLabel
+
+    if (song.event === '주일 찬양') {
+      // 주일 찬양은 순서대로 이번 주 / 다음 주
+      weekLabel = sundayCount === 0 ? '이번 주 찬양곡' : '다음 주 찬양곡'
+      sundayCount++
+    } else {
+      // 특별 행사는 날짜 + event 이름
+      weekLabel = `${displayDate} ${song.event}`
+    }
+
+    return {
+      ...song,
+      displayDate,
+      weekLabel
+    }
+  })
 }
 
 /**
