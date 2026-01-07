@@ -44,7 +44,7 @@
             <p class="text-gray-600 mb-4">{{ announcement.content }}</p>
 
             <!-- Details -->
-            <div v-if="announcement.details" class="mb-4">
+            <div v-if="announcement.details && Object.keys(announcement.details).length > 0" class="mb-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <div v-for="(value, key) in announcement.details" :key="key" class="flex">
                   <span class="font-medium text-gray-700 min-w-20">{{ getDetailLabel(key) }}:</span>
@@ -69,7 +69,8 @@
                 <img
                   :src="image.url"
                   :alt="image.label"
-                  class="w-full max-w-[200px] mx-auto rounded-lg border border-gray-200"
+                  class="w-full max-w-[200px] mx-auto rounded-lg border border-gray-200 cursor-pointer hover:opacity-80 transition-opacity"
+                  @click="openLightbox(image)"
                 />
                 <p class="text-xs text-gray-500 mt-1">{{ image.label }}</p>
               </div>
@@ -100,11 +101,40 @@
         </div>
       </div>
     </div>
+
+    <!-- Image Lightbox Modal -->
+    <Teleport to="body">
+      <div
+        v-if="lightboxImage"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+        @click="closeLightbox"
+      >
+        <div class="relative max-w-full max-h-full" @click.stop>
+          <!-- Close Button -->
+          <button
+            @click="closeLightbox"
+            class="absolute -top-10 right-0 text-white text-sm flex items-center gap-1 hover:text-gray-300"
+          >
+            닫기 ✕
+          </button>
+
+          <!-- Image -->
+          <img
+            :src="lightboxImage.url"
+            :alt="lightboxImage.label"
+            class="max-w-full max-h-[80vh] rounded-lg"
+          />
+
+          <!-- Label -->
+          <p class="text-center text-white mt-3 text-sm">{{ lightboxImage.label }}</p>
+        </div>
+      </div>
+    </Teleport>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 // Set page title
 useHead({
@@ -117,8 +147,30 @@ const annualPlan = ref([])
 const loading = ref(true)
 const error = ref(null)
 
-// Load data
+// Lightbox
+const lightboxImage = ref(null)
+
+const openLightbox = (image) => {
+  lightboxImage.value = image
+  document.body.style.overflow = 'hidden'
+}
+
+const closeLightbox = () => {
+  lightboxImage.value = null
+  document.body.style.overflow = ''
+}
+
+// Close on Escape key
+const handleKeydown = (e) => {
+  if (e.key === 'Escape' && lightboxImage.value) {
+    closeLightbox()
+  }
+}
+
 onMounted(async () => {
+  // Add keyboard listener
+  document.addEventListener('keydown', handleKeydown)
+
   try {
     // Load announcements and annual plan in parallel
     const [announcementsRes, annualPlanRes] = await Promise.all([
@@ -137,6 +189,11 @@ onMounted(async () => {
     error.value = '공지사항을 불러오는데 실패했습니다.'
     loading.value = false
   }
+})
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', handleKeydown)
+  document.body.style.overflow = ''
 })
 
 // Utility functions
