@@ -41,6 +41,7 @@
                     >
                       {{ formatDate(song.date) }}
                     </span>
+                    <span v-if="song.event" class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">{{ song.event }}</span>
                     <span class="font-medium text-gray-800">{{ song.title }}</span>
                     <span v-if="song.composer" class="text-sm text-gray-500">- {{ song.composer }}</span>
                   </div>

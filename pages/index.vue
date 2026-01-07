@@ -34,8 +34,9 @@
 
           <!-- Song Info -->
           <div class="mb-4">
-            <div class="flex items-center gap-2 mb-1">
+            <div class="flex flex-wrap items-center gap-2 mb-1">
               <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">{{ currentWeekSong.displayDate }}</span>
+              <span v-if="currentWeekSong.event" class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">{{ currentWeekSong.event }}</span>
               <span class="text-base font-medium text-gray-800">{{ currentWeekSong.title }}</span>
             </div>
             <span v-if="currentWeekSong.composer" class="text-sm text-gray-500">작곡: {{ currentWeekSong.composer }}</span>

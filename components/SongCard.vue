@@ -4,8 +4,9 @@
       <div class="flex items-center justify-between mb-4">
         <div>
           <h2 class="text-xl font-semibold text-gray-900">{{ song.weekLabel }}</h2>
-          <div class="flex items-center gap-2 mt-1">
+          <div class="flex flex-wrap items-center gap-2 mt-1">
             <span class="text-sm text-gray-500">{{ song.displayDate }}</span>
+            <span v-if="song.event" class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs">{{ song.event }}</span>
             <span class="text-lg font-medium text-gray-800">{{ song.title }}</span>
             <span v-if="song.composer" class="text-sm text-gray-500">- {{ song.composer }}</span>
           </div>
