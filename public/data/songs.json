@@ -7,8 +7,16 @@
       "event": "주일 찬양",
       "composer": null,
       "voiceParts": ["soprano", "alto", "tenor", "bass"],
-      "score": null,
-      "practice": null,
+      "score": {
+        "url": "/data/songs/왕이신나의하나님/왕이신 나의 하나님.pdf",
+        "type": "pdf"
+      },
+      "practice": {
+        "soprano": { "type": "youtube", "url": "https://youtu.be/AAcmeEu-rJ8?si=7sT2GL-r2s8dE4cm" },
+        "alto": { "type": "youtube", "url": "https://youtu.be/QocwXWh1PuE?si=ijw_9J8DGeCMRB5X" },
+        "tenor": { "type": "youtube", "url": "https://youtu.be/0m9aezgNneU?si=8DLSOtWwKFdzBmaz" },
+        "bass": { "type": "youtube", "url": "https://youtu.be/rXV45sVtZo4?si=q_IKxUHRk-c2Aqdj" }
+      },
       "notes": null
     },
     {
@@ -18,8 +26,16 @@
       "event": "새벽기도 특순",
       "composer": null,
       "voiceParts": ["soprano", "alto", "tenor", "bass"],
-      "score": null,
-      "practice": null,
+      "score": {
+        "url": "/data/songs/왕이신나의하나님/왕이신 나의 하나님.pdf",
+        "type": "pdf"
+      },
+      "practice": {
+        "soprano": { "type": "youtube", "url": "https://youtu.be/AAcmeEu-rJ8?si=7sT2GL-r2s8dE4cm" },
+        "alto": { "type": "youtube", "url": "https://youtu.be/QocwXWh1PuE?si=ijw_9J8DGeCMRB5X" },
+        "tenor": { "type": "youtube", "url": "https://youtu.be/0m9aezgNneU?si=8DLSOtWwKFdzBmaz" },
+        "bass": { "type": "youtube", "url": "https://youtu.be/rXV45sVtZo4?si=q_IKxUHRk-c2Aqdj" }
+      },
       "notes": null
     },
     {
