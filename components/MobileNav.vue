@@ -64,13 +64,22 @@
             <span class="font-medium text-gray-700">예배 찬양곡</span>
           </NuxtLink>
           
-          <NuxtLink 
-            to="/choir/notices" 
+          <NuxtLink
+            to="/choir/notices"
             @click="closeMenu"
             class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200"
           >
             <span class="text-lg">📢</span>
             <span class="font-medium text-gray-700">공지사항</span>
+          </NuxtLink>
+
+          <NuxtLink
+            to="/choir/meals"
+            @click="closeMenu"
+            class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 active:bg-gray-100 transition-colors duration-200"
+          >
+            <span class="text-lg">🍽️</span>
+            <span class="font-medium text-gray-700">식사 사인업</span>
           </NuxtLink>
         </nav>
         

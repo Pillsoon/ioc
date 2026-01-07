@@ -33,8 +33,8 @@
             <span>예배 찬양곡</span>
           </NuxtLink>
           
-          <NuxtLink 
-            to="/choir/notices" 
+          <NuxtLink
+            to="/choir/notices"
             class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-sm font-medium transition-colors duration-200"
             :class="{
               'bg-gray-100 text-gray-900': $route.path === '/choir/notices',
@@ -43,6 +43,18 @@
           >
             <span>📢</span>
             <span>공지사항</span>
+          </NuxtLink>
+
+          <NuxtLink
+            to="/choir/meals"
+            class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-sm font-medium transition-colors duration-200"
+            :class="{
+              'bg-gray-100 text-gray-900': $route.path === '/choir/meals',
+              'text-gray-600 hover:text-gray-900 hover:bg-gray-50': $route.path !== '/choir/meals'
+            }"
+          >
+            <span>🍽️</span>
+            <span>식사</span>
           </NuxtLink>
       </div>
     </div>
