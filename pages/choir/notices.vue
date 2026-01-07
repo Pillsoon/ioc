@@ -64,7 +64,7 @@
             </div>
 
             <!-- Images -->
-            <div v-if="announcement.images && announcement.images.length > 0" class="grid grid-cols-2 gap-3">
+            <div v-if="announcement.images && announcement.images.length > 0" class="grid grid-cols-2 gap-3 mb-4">
               <div v-for="image in announcement.images" :key="image.url" class="text-center">
                 <img
                   :src="image.url"
@@ -75,6 +75,16 @@
                 <p class="text-xs text-gray-500 mt-1">{{ image.label }}</p>
               </div>
             </div>
+
+            <!-- Link Button -->
+            <NuxtLink
+              v-if="announcement.link"
+              :to="announcement.link.url"
+              class="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+            >
+              {{ announcement.link.label }}
+              <span>→</span>
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -231,7 +241,8 @@ const getDetailLabel = (key) => {
     'auditionDate': '오디션일시',
     'requirements': '자격요건',
     'monthlyFee': '월 회비',
-    'yearlyFee': '연 회비'
+    'yearlyFee': '연 회비',
+    '담당': '담당'
   }
   return labels[key] || key
 }
