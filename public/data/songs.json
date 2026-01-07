@@ -45,7 +45,10 @@
       "event": "주일 찬양",
       "composer": null,
       "voiceParts": ["soprano", "alto", "tenor", "bass"],
-      "score": null,
+      "score": {
+        "url": "/data/songs/성도여다함께/성도여 다함께.pdf",
+        "type": "pdf"
+      },
       "practice": null,
       "notes": null
     },
@@ -56,7 +59,10 @@
       "event": "비전 센터 입당 감사예배",
       "composer": null,
       "voiceParts": ["soprano", "alto", "tenor", "bass"],
-      "score": null,
+      "score": {
+        "url": "/data/songs/성도여다함께/성도여 다함께.pdf",
+        "type": "pdf"
+      },
       "practice": null,
       "notes": null
     }
