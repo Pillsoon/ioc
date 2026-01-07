@@ -42,24 +42,18 @@
             <span v-if="currentWeekSong.composer" class="text-sm text-gray-500">작곡: {{ currentWeekSong.composer }}</span>
           </div>
 
-          <!-- Action Buttons -->
-          <div class="flex gap-2 mb-4">
+          <!-- Action Button -->
+          <div class="mb-4">
             <button
               @click="handleDownloadScore(currentWeekSong)"
               :disabled="!hasScoreAvailable"
               :class="hasScoreAvailable
                 ? 'bg-gray-900 hover:bg-gray-800 text-white'
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'"
-              class="flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+              class="w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
             >
-              📄 악보
+              📄 악보 다운로드
             </button>
-            <NuxtLink
-              to="/choir/songs"
-              class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-900 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 text-center"
-            >
-              🎵 전체보기
-            </NuxtLink>
           </div>
 
           <!-- Practice Videos -->
@@ -91,6 +85,16 @@
                 {{ getPartLabel(part) }}
               </button>
             </div>
+          </div>
+
+          <!-- View All Link -->
+          <div class="pt-3 border-t border-gray-200">
+            <NuxtLink
+              to="/choir/songs"
+              class="text-sm text-blue-600 hover:text-blue-800 font-medium"
+            >
+              전체 찬양곡 보기 →
+            </NuxtLink>
           </div>
         </div>
       </div>
