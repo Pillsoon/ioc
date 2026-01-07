@@ -1,59 +1,50 @@
 {
   "songs": [
     {
-      "id": 2,
-      "date": "9/22",
+      "id": "2024-09-22-강하고담대하라",
+      "date": "2024-09-22",
       "title": "강하고 담대하라",
       "composer": "김영광",
-      "voiceParts": ["소프라노", "앨토", "테너", "베이스"],
-      "hasScore": true,
-      "hasAudio": true,
-      "scoreUrl": "https://firebase-storage-url.com/scores/song1.pdf",
-      "isYouTube": true,
-      "practiceVideos": {
-        "합창": "https://youtu.be/qSKgDGN5FBM?si=fmHVYr1OD4XZlt5S",
-        "소프라노": "https://youtu.be/Fnvx0EC14v0?si=I5mGnB2nEKlTZJb4",
-        "앨토": "https://youtu.be/3pRpFBNNu-0?si=zqU-ooqutfkG6kzk",
-        "테너": "https://youtu.be/SKncI5nagyQ?si=0J-J2ZmtWXnxbcqi",
-        "베이스": "https://youtu.be/3yBRE_yTHK4?si=T_VmpWXETEovaXYK"
+      "voiceParts": ["soprano", "alto", "tenor", "bass"],
+      "score": {
+        "url": "https://firebase-storage-url.com/scores/song1.pdf",
+        "type": "pdf"
+      },
+      "practice": {
+        "합창": { "type": "youtube", "url": "https://youtu.be/qSKgDGN5FBM?si=fmHVYr1OD4XZlt5S" },
+        "soprano": { "type": "youtube", "url": "https://youtu.be/Fnvx0EC14v0?si=I5mGnB2nEKlTZJb4" },
+        "alto": { "type": "youtube", "url": "https://youtu.be/3pRpFBNNu-0?si=zqU-ooqutfkG6kzk" },
+        "tenor": { "type": "youtube", "url": "https://youtu.be/SKncI5nagyQ?si=0J-J2ZmtWXnxbcqi" },
+        "bass": { "type": "youtube", "url": "https://youtu.be/3yBRE_yTHK4?si=T_VmpWXETEovaXYK" }
       },
       "notes": "감사 찬양으로 시작하는 주일 예배"
     },
     {
-      "id": 1,
-      "date": "9/29",
+      "id": "2024-09-29-새노래로찬양",
+      "date": "2024-09-29",
       "title": "새 노래로 찬양",
-      "voiceParts": ["소프라노", "앨토", "테너", "베이스"],
-      "hasScore": true,
-      "hasAudio": true,
-      "scoreUrl": "/data/새 노래로 찬양/score.pdf",
-      "practiceFiles": {
-        "소프라노": {
-          "audioUrl": "/data/새 노래로 찬양/soprano.mp3",
-          "fileType": "mp3"
-        },
-        "앨토": {
-          "audioUrl": "/data/새 노래로 찬양/alto.mp3",
-          "fileType": "mp3"
-        },
-        "테너": {
-          "audioUrl": "/data/새 노래로 찬양/tenor.mp3",
-          "fileType": "mp3"
-        },
-        "베이스": {
-          "audioUrl": "/data/새 노래로 찬양/bass.mp3",
-          "fileType": "mp3"
-        }
+      "composer": null,
+      "voiceParts": ["soprano", "alto", "tenor", "bass"],
+      "score": {
+        "url": "/data/새 노래로 찬양/score.pdf",
+        "type": "pdf"
+      },
+      "practice": {
+        "soprano": { "type": "mp3", "url": "/data/새 노래로 찬양/soprano.mp3" },
+        "alto": { "type": "mp3", "url": "/data/새 노래로 찬양/alto.mp3" },
+        "tenor": { "type": "mp3", "url": "/data/새 노래로 찬양/tenor.mp3" },
+        "bass": { "type": "mp3", "url": "/data/새 노래로 찬양/bass.mp3" }
       },
       "notes": "새로운 찬양, 각 파트별 연습 파일 제공"
     },
     {
-      "id": 3,
-      "date": "미정",
+      "id": "2024-00-00-주님의은혜",
+      "date": null,
       "title": "주님의 은혜",
-      "voiceParts": ["소프라노", "앨토", "테너", "베이스"],
-      "hasScore": false,
-      "hasAudio": false,
+      "composer": null,
+      "voiceParts": ["soprano", "alto", "tenor", "bass"],
+      "score": null,
+      "practice": null,
       "notes": "예정된 찬양곡"
     }
   ]

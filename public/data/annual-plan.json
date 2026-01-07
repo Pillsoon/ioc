@@ -1,0 +1,52 @@
+{
+  "year": 2024,
+  "plan": [
+    {
+      "month": 2,
+      "label": "2월",
+      "events": [
+        { "date": "2024-02-02", "title": "1차 성가대 신입단원 모집" },
+        { "date": "2024-02-09", "title": "1차 성가대 신입단원 모집" }
+      ]
+    },
+    {
+      "month": 4,
+      "label": "4월",
+      "events": [
+        { "date": "2024-04-20", "title": "부활절 연습 & 찬양 없음" },
+        { "date": "2024-04-26", "title": "가족과 함께하는 소풍" }
+      ]
+    },
+    {
+      "month": 5,
+      "label": "5월",
+      "events": [
+        { "date": null, "title": "성탄절 칸타타 연습 시작" }
+      ]
+    },
+    {
+      "month": 10,
+      "label": "10월",
+      "events": [
+        { "date": "2024-10-05", "title": "가을 성가대 수련회 (1박2일)", "endDate": "2024-10-06" },
+        { "date": "2024-10-25", "title": "콰이어 일일 수련회" }
+      ]
+    },
+    {
+      "month": 11,
+      "label": "11월",
+      "events": [
+        { "date": null, "title": "첫째주 창립기념 특새" },
+        { "date": null, "title": "추수감사절 특별 찬양" }
+      ]
+    },
+    {
+      "month": 12,
+      "label": "12월",
+      "events": [
+        { "date": null, "title": "성탄절 칸타타 공연" },
+        { "date": null, "title": "연말 감사 예배" }
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@
       <div v-if="loading" class="text-center py-8">
         <p class="text-gray-500">데이터 로딩 중...</p>
       </div>
-      
+
       <!-- Error State -->
       <div v-else-if="error" class="text-center py-8">
         <p class="text-red-500">오류: {{ error }}</p>
@@ -23,7 +23,7 @@
             <!-- Header -->
             <div class="flex items-start justify-between mb-3">
               <div class="flex items-center gap-2">
-                <span 
+                <span
                   :class="{
                     'bg-gray-900 text-white': announcement.priority === 'high',
                     'bg-gray-100 text-gray-700': announcement.priority === 'medium',
@@ -33,13 +33,13 @@
                 >
                   {{ getPriorityLabel(announcement.priority) }}
                 </span>
-                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs font-medium">{{ announcement.date }}</span>
+                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs font-medium">{{ formatDate(announcement.date) }}</span>
               </div>
             </div>
 
             <!-- Title -->
             <h2 class="text-lg sm:text-xl font-semibold text-gray-900 mb-3">{{ announcement.title }}</h2>
-            
+
             <!-- Content -->
             <p class="text-gray-600 mb-4">{{ announcement.content }}</p>
 
@@ -54,7 +54,7 @@
             </div>
 
             <!-- Notes -->
-            <div v-if="announcement.notes && announcement.notes.length > 0" class="bg-gray-50 border border-gray-200 rounded-lg p-3">
+            <div v-if="announcement.notes && announcement.notes.length > 0" class="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-4">
               <div class="text-xs font-medium text-gray-600 mb-2">📌 주의사항</div>
               <ul class="space-y-1">
                 <li v-for="note in announcement.notes" :key="note" class="text-sm text-gray-700">
@@ -62,12 +62,24 @@
                 </li>
               </ul>
             </div>
+
+            <!-- Images -->
+            <div v-if="announcement.images && announcement.images.length > 0" class="grid grid-cols-2 gap-3">
+              <div v-for="image in announcement.images" :key="image.url" class="text-center">
+                <img
+                  :src="image.url"
+                  :alt="image.label"
+                  class="w-full max-w-[200px] mx-auto rounded-lg border border-gray-200"
+                />
+                <p class="text-xs text-gray-500 mt-1">{{ image.label }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Annual Plan -->
-      <div v-if="!loading && !error" class="mt-8">
+      <div v-if="!loading && !error && annualPlan.length > 0" class="mt-8">
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <div class="p-4 sm:p-6">
             <h2 class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
@@ -76,10 +88,10 @@
             </h2>
             <div class="space-y-4">
               <div v-for="month in annualPlan" :key="month.month" class="border-l-2 border-gray-200 pl-4">
-                <h3 class="font-semibold text-gray-800 mb-2">{{ month.month }}</h3>
+                <h3 class="font-semibold text-gray-800 mb-2">{{ month.label }}</h3>
                 <ul class="space-y-1">
-                  <li v-for="event in month.events" :key="event" class="text-sm text-gray-600">
-                    • {{ event }}
+                  <li v-for="event in month.events" :key="event.title" class="text-sm text-gray-600">
+                    • {{ event.title }}
                   </li>
                 </ul>
               </div>
@@ -99,19 +111,27 @@ useHead({
   title: '공지사항 - Irvine Onnuri Choir'
 })
 
-// Data from announcements.json
+// Data
 const announcements = ref([])
 const annualPlan = ref([])
 const loading = ref(true)
 const error = ref(null)
 
-// Load data from announcements.json
+// Load data
 onMounted(async () => {
   try {
-    const response = await fetch('/data/announcements.json')
-    const data = await response.json()
-    announcements.value = data.announcements.filter(announcement => announcement.isActive)
-    annualPlan.value = data.annualPlan
+    // Load announcements and annual plan in parallel
+    const [announcementsRes, annualPlanRes] = await Promise.all([
+      fetch('/data/announcements.json'),
+      fetch('/data/annual-plan.json')
+    ])
+
+    const announcementsData = await announcementsRes.json()
+    const annualPlanData = await annualPlanRes.json()
+
+    announcements.value = announcementsData.announcements.filter(a => a.isActive)
+    annualPlan.value = annualPlanData.plan
+
     loading.value = false
   } catch (err) {
     error.value = '공지사항을 불러오는데 실패했습니다.'
@@ -120,6 +140,12 @@ onMounted(async () => {
 })
 
 // Utility functions
+const formatDate = (dateStr) => {
+  if (!dateStr) return ''
+  const [year, month, day] = dateStr.split('-').map(Number)
+  return `${month}/${day}`
+}
+
 const getPriorityLabel = (priority) => {
   const labels = {
     'high': '중요',
@@ -145,7 +171,9 @@ const getDetailLabel = (key) => {
     'dressCode': '복장',
     'recruitmentPeriod': '모집기간',
     'auditionDate': '오디션일시',
-    'requirements': '자격요건'
+    'requirements': '자격요건',
+    'monthlyFee': '월 회비',
+    'yearlyFee': '연 회비'
   }
   return labels[key] || key
 }

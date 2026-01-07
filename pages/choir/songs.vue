@@ -9,17 +9,17 @@
         <div v-if="loading" class="text-center py-8">
           <p class="text-gray-500">데이터 로딩 중...</p>
         </div>
-        
+
         <div v-else-if="error" class="text-center py-8">
           <p class="text-red-500">오류: {{ error }}</p>
         </div>
-        
+
         <div v-else>
           <!-- Weekly Songs -->
-          <SongCard 
-            v-for="song in weeklySongs" 
-            :key="song.id" 
-            :song="song" 
+          <SongCard
+            v-for="song in weeklySongs"
+            :key="song.id"
+            :song="song"
           />
 
           <!-- All Songs List -->
@@ -32,14 +32,14 @@
               <div class="space-y-3">
                 <div v-for="song in songs" :key="song.id" class="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200">
                   <div class="flex flex-wrap items-center gap-2">
-                    <span 
+                    <span
                       :class="{
-                        'bg-blue-100 text-blue-800': song.date !== '미정',
-                        'bg-gray-100 text-gray-600': song.date === '미정'
+                        'bg-blue-100 text-blue-800': song.date !== null,
+                        'bg-gray-100 text-gray-600': song.date === null
                       }"
                       class="px-2 py-1 rounded-full text-xs font-medium"
                     >
-                      {{ song.date }}
+                      {{ formatDate(song.date) }}
                     </span>
                     <span class="font-medium text-gray-800">{{ song.title }}</span>
                     <span v-if="song.composer" class="text-sm text-gray-500">- {{ song.composer }}</span>
@@ -59,7 +59,7 @@ useHead({
   title: '예배 찬양곡 - Irvine Onnuri Choir'
 })
 
-import { createWeeklySongs } from '~/utils/songsUtils.js'
+import { createWeeklySongs, formatDate } from '~/utils/songsUtils.js'
 
 // Load songs data from JSON file
 const songsData = await $fetch('/data/songs.json')
