@@ -38,8 +38,8 @@ export default defineNuxtConfig({
     }
   },
 
-  // SSR configuration
-  ssr: true,
+  // SSR configuration (SPA mode for Vercel)
+  ssr: false,
 
   // Compatibility date
   compatibilityDate: '2025-09-20'

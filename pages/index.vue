@@ -12,7 +12,6 @@
           <div class="text-center">
             <div class="text-6xl mb-4">🎵</div>
             <h2 class="text-xl font-semibold text-gray-900 mb-2">Irvine Onnuri Choir</h2>
-            <p class="text-gray-600">온누리교회 어바인 합창단</p>
           </div>
         </div>
       </div>
